@@ -1,50 +1,40 @@
 package mancala.domain;
 
-// Make your own mancala implementation using your design.
-// You can take this stub as an example how to make a 
-// class inside a package and how to test it.
-
 public class Player {
     boolean turn = true;
 
     public Player(){
     }
-    
-//  static void makePlayers(){
-//       Player player1 = new Player();
-//       Player player2 = new Player();
-//       player2.turn = false;
-//  }
 
-//  public Player[] makePlayers(){
-//       Player player1 = new Player();
-//       Player player2 = new Player();
-//       player2.turn = false;
-//       Player[] Players = new Player[2];
-//       Players[0] = player1;
-//       Players[1] = player2;
-//       return Players;
-//  }
+  public Player[] makePlayers(){
+       Player player1 = new Player();
+       Player player2 = new Player();
+       player2.turn = false;
+       Player[] Players = new Player[2];
+       Players[0] = player1;
+       Players[1] = player2;
+       return Players;
+  }
 
-    public Player getOpponentPlayer(){
-        return this;
+    public Player getOpponentPlayer(Player currentPlayer, Player player1, Player player2){
+        if(currentPlayer == player1){
+            return player2;
+        }
+        else{
+            return player1;
+        }
     }
     public boolean getTurn() {
-        if(this.turn == true){
-            return true;
-        }
-        else{
-            return false;
-        }           
+        return this.turn;    
     }
     public boolean switchTurn(){
-        if(turn == true){
-            turn = false;
-            return turn;
+        if(this.turn == true){
+            this.turn = false;
+            return this.turn;
         }
         else{
-            turn = true;
-            return turn;
+            this.turn = true;
+            return this.turn;
         }
     }
     

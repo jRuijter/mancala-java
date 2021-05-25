@@ -1,6 +1,5 @@
 package mancala.domain;
 
-
 public class Kalaha {
     public Kalaha(){
     }
