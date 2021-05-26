@@ -2,11 +2,11 @@ package mancala.domain;
 
 public class Player {
     boolean turn = true;
+    Kalaha kalaha = new Kalaha();
 
     public Player(){
     }
-
-  public Player[] makePlayers(){
+    public Player[] makePlayers(){
        Player player1 = new Player();
        Player player2 = new Player();
        player2.turn = false;
@@ -14,7 +14,7 @@ public class Player {
        Players[0] = player1;
        Players[1] = player2;
        return Players;
-  }
+    }
 
     public Player getOpponentPlayer(Player currentPlayer, Player player1, Player player2){
         if(currentPlayer == player1){
@@ -30,14 +30,20 @@ public class Player {
     public boolean switchTurn(){
         if(this.turn == true){
             this.turn = false;
-            return this.turn;
         }
         else{
             this.turn = true;
-            return this.turn;
         }
+        return this.turn;
     }
     
+    public void setKalaha(Kalaha kalaha1){
+        kalaha = kalaha1;
+    }
+    public Kalaha getKalaha(){
+        return this.kalaha;
+    }
+
     public static void main(String[] args){
     }
 }
