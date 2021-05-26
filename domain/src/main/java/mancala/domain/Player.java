@@ -6,9 +6,24 @@ public class Player {
 
     public Player(){
     }
+    public Player(Kalaha kalahaOfThisPlayer){
+        kalaha = kalahaOfThisPlayer;
+    }
+
+    public Kalaha[] makeKalahas(){
+        Kalaha kalaha1 = new Kalaha();
+        Kalaha kalaha2 = new Kalaha();
+        Kalaha[] Kalahas = new Kalaha[2];
+        Kalahas[0] = kalaha1;
+        Kalahas[1] = kalaha2;
+        return Kalahas;
+    }
+
     public Player[] makePlayers(){
-       Player player1 = new Player();
-       Player player2 = new Player();
+       Kalaha k0 = new Kalaha();
+       Kalaha[] Kalahas = k0.makeKalahas();
+       Player player1 = new Player(Kalahas[0]);
+       Player player2 = new Player(Kalahas[1]);
        player2.turn = false;
        Player[] Players = new Player[2];
        Players[0] = player1;
