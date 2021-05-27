@@ -1,29 +1,35 @@
 package mancala.domain;
 
-public class Kalaha {
- //   private int rocks = 0;
-    SmallBowl nextBowl = new SmallBowl();
+public class Kalaha implements Bowl {
+    Bowl neighbor;
+    int index;
 
-    public Kalaha(SmallBowl smallBowlofThisPlayer){
-        nextBowl = smallBowlofThisPlayer;
-    }
-    public Kalaha(){
-    }
-
-    public Kalaha[] makeKalahas(){
-        Kalaha kalaha1 = new Kalaha();
-        Kalaha kalaha2 = new Kalaha();
-        Kalaha[] Kalahas = new Kalaha[2];
-        Kalahas[0] = kalaha1;
-        Kalahas[1] = kalaha2;
-        return Kalahas;
+    public Kalaha(SmallBowl nr1, int i){
+        if(i==14){
+            this.index = i;
+            this.neighbor = nr1;
+        }
+        else{ 
+            i++;
+            this.neighbor = new SmallBowl(nr1, i);
+        }
     }
 
-    public SmallBowl getNextBowl(){
-        return this.nextBowl;
+    public Bowl getNextBowl(){
+        return this.neighbor;
     }
 
-    public static void main(String[] args){
+    public Bowl getNextBowl(int choice){
+        int indexNew = this.getIndex() + (choice%14);
+        Bowl tempBowl = this;
+        while(indexNew != tempBowl.getIndex()){
+            tempBowl = tempBowl.getNextBowl();
+        }
+        return tempBowl;
+    }
+
+    public int getIndex(){
+        return this.index;
     }
 }
 

@@ -6,27 +6,28 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SmallBowlTest{
 
     @Test
-    public void TestingGetNextBowl(){
-        SmallBowl firstBowl = new SmallBowl();
-        SmallBowl secondBowl = new SmallBowl(firstBowl);
-        assertEquals(firstBowl, secondBowl.getNextBowl());
+    public void CheckingGetNextBowl2Steps(){
+        SmallBowl s0 = new SmallBowl();
+        assertEquals(s0.getNextBowl().getNextBowl().getIndex(), 3);
+    }
+    @Test
+    public void CheckingGetNextBowl15Steps(){
+        SmallBowl s0 = new SmallBowl();
+        assertEquals(2, s0.getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getNextBowl().getIndex());
     }
 
     @Test
-    public void MakeAllSmallBowls(){
-        SmallBowl bowl6 = new SmallBowl();
-        SmallBowl bowl5 = new SmallBowl(bowl6);
-        SmallBowl bowl4 = new SmallBowl(bowl5);
-        SmallBowl bowl3 = new SmallBowl(bowl4);
-        SmallBowl bowl2 = new SmallBowl(bowl3);
-        SmallBowl bowl1 = new SmallBowl(bowl2);
-        Kalaha k0 = new Kalaha(bowl1);
-        Player p0 = new Player(k0);
-        assertEquals(bowl3, p0.getKalaha().getNextBowl().getNextBowl().getNextBowl());
+    public void TestingGetNextBowlWithInt15Steps(){
+        SmallBowl s0 = new SmallBowl();
+        assertEquals(s0.getNextBowl(15).getIndex(), 2);
     }
+
+    @Test
+    public void TestingGetNextBowlWithInt9Steps(){
+        SmallBowl s0 = new SmallBowl();
+        assertEquals(s0.getNextBowl(9).getIndex(), 10);
+    }
+
     
-    @Test
-    public void MakeAllSmallBowlsViaMethod(){
 
-    }
 }
