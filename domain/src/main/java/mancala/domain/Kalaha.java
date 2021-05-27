@@ -1,11 +1,15 @@
 package mancala.domain;
 
 public class Kalaha {
-    private SmallBowl nextBowl = new SmallBowl();
-    private int rocks = 0;
+ //   private int rocks = 0;
+    SmallBowl nextBowl = new SmallBowl();
 
+    public Kalaha(SmallBowl smallBowlofThisPlayer){
+        nextBowl = smallBowlofThisPlayer;
+    }
     public Kalaha(){
     }
+
     public Kalaha[] makeKalahas(){
         Kalaha kalaha1 = new Kalaha();
         Kalaha kalaha2 = new Kalaha();
@@ -13,6 +17,10 @@ public class Kalaha {
         Kalahas[0] = kalaha1;
         Kalahas[1] = kalaha2;
         return Kalahas;
+    }
+
+    public SmallBowl getNextBowl(){
+        return this.nextBowl;
     }
 
     public static void main(String[] args){
