@@ -3,6 +3,7 @@ package mancala.domain;
 class SmallBowl implements Bowl{  
     Bowl neighbor;
     int index;
+    int stones = 4;
 
     public SmallBowl(){
         this.index = 1;
@@ -37,6 +38,25 @@ class SmallBowl implements Bowl{
 
     public int getIndex(){
         return this.index;
+    }
+
+    public int getStones(){
+        return this.stones;
+    }
+
+    public SmallBowl setStones(int newAmount){
+        this.stones = newAmount;
+        return this;
+    }
+
+    public Bowl addStone(){
+        this.stones++;
+        return this;
+    }
+
+    public SmallBowl emptyBowl(){
+        this.stones = 0;
+        return this;
     }
 }
 

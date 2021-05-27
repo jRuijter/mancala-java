@@ -3,6 +3,7 @@ package mancala.domain;
 public class Kalaha implements Bowl {
     Bowl neighbor;
     int index;
+    int stones = 0;
 
     public Kalaha(SmallBowl nr1, int i){
         if(i==14){
@@ -31,6 +32,15 @@ public class Kalaha implements Bowl {
 
     public int getIndex(){
         return this.index;
+    }
+
+    public int getStones(){
+        return this.stones;
+    }
+
+    public Bowl addStone(){
+        this.stones++;
+        return this;
     }
 }
 
