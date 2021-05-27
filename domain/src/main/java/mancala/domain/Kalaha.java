@@ -10,6 +10,7 @@ public class Kalaha implements Bowl {
             this.neighbor = nr1;
         }
         else{ 
+            this.index = i;
             i++;
             this.neighbor = new SmallBowl(nr1, i);
         }

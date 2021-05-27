@@ -25,7 +25,7 @@ public class SmallBowlTest{
     @Test
     public void TestingGetNextBowlWithInt9Steps(){
         SmallBowl s0 = new SmallBowl();
-        assertEquals(s0.getNextBowl(9).getIndex(), 10);
+        assertEquals(s0.getNextBowl(6).getIndex(), 7);
     }
 
     
