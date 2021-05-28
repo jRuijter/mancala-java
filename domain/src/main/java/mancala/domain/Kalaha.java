@@ -5,6 +5,7 @@ public class Kalaha implements Bowl {
     int index;
     int stones = 0;
     Player player;
+    int rocksInHand = 0;
 
     public Kalaha(SmallBowl nr1, int i){
         if(i==14){

@@ -22,8 +22,6 @@ public class Player {
         return this.opponent;
     }
 
-    
-
     public Player switchTurn(){
         if(this.turn == true){
             this.turn = false;
@@ -34,4 +32,6 @@ public class Player {
             return this;
         }
     }
+
+
 }

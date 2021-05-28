@@ -5,6 +5,8 @@ class SmallBowl implements Bowl{
     int index;
     int stones = 4;
     Player player;
+    int rocksInHand = 0;
+    Bowl bowlOfFinalStone;
 
     public SmallBowl(){
         this.index = 1;
@@ -69,6 +71,22 @@ class SmallBowl implements Bowl{
 
     public Player getPlayer(){
         return this.player;
+    }
+
+    public void play(){
+        if(this.player.getTurn() == true && this.stones > 0){
+            playTurn();
+        }
+    }
+
+    public void playTurn(){
+        rocksInHand = this.stones;
+        this.stones = 0;
+        for(int i = 1; i <= rocksInHand; i++){
+            this.getNextBowl(i).addStone();
+        }
+        bowlOfFinalStone = this.getNextBowl(rocksInHand);
+        this.player.switchTurn();
     }
 }
 

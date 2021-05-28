@@ -52,4 +52,20 @@ public class SmallBowlTest{
         assertEquals(s0.emptyBowl().getStones(), 0);
     }
 
+    @Test
+    public void PlayAMove(){
+        SmallBowl s0 = new SmallBowl();
+        s0.play();
+        assertEquals(s0.getStones(), 0);
+        assertEquals(s0.getNextBowl(2).getStones(), 5);
+        assertEquals(s0.getPlayer().getTurn(), false);
+    }
+
+    @Test
+    public void CheckFinalStoneOfMove(){
+        SmallBowl s0 = new SmallBowl();
+        s0.play();
+        assertEquals(s0.bowlOfFinalStone, s0.getNextBowl(4));
+    }
+
 }
