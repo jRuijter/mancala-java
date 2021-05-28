@@ -12,6 +12,12 @@ public class PlayerTest {
     }
 
     @Test
+    public void SwitchingPlayersTurn(){
+        Player p1 = new Player();
+        assertNotEquals(p1.getTurn(), p1.switchTurn().getTurn());
+    }
+
+    @Test
     public void CheckingPlayersSideFirstBowlWithOwnBowl(){
         SmallBowl s0 = new SmallBowl();
         assertEquals(s0.getPlayer(), s0.getNextBowl(4).getPlayer());

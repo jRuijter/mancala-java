@@ -21,4 +21,17 @@ public class Player {
     public Player getOpponent(){
         return this.opponent;
     }
+
+    
+
+    public Player switchTurn(){
+        if(this.turn == true){
+            this.turn = false;
+            return this;
+        }
+        else{
+            this.turn = true;
+            return this;
+        }
+    }
 }
