@@ -24,10 +24,12 @@ public class Player {
 
     public Player switchTurn(){
         if(this.turn == true){
+            this.getOpponent().turn = true;
             this.turn = false;
             return this;
         }
         else{
+            this.getOpponent().turn = false;
             this.turn = true;
             return this;
         }

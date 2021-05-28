@@ -64,8 +64,27 @@ public class SmallBowlTest{
     @Test
     public void CheckFinalStoneOfMove(){
         SmallBowl s0 = new SmallBowl();
+        int temprocks = s0.getStones();
         s0.play();
-        assertEquals(s0.bowlOfFinalStone, s0.getNextBowl(4));
+        assertEquals(s0.bowlOfFinalStone, s0.getNextBowl(temprocks));
+    }
+
+    @Test
+    public void SkipOpponentsKalahaDuringMove(){
+        SmallBowl s0 = new SmallBowl();
+        s0.setStones(14);
+        s0.play();
+        assertEquals(0, s0.getNextBowl(13).getStones());
+        assertEquals(1, s0.getStones());
+    }
+
+    @Test
+    public void FinalBowlEndsInOwnKalaha(){
+        SmallBowl s0 = new SmallBowl();
+        s0.setStones(6);
+        s0.play();
+        assertEquals(s0.getPlayer().getTurn(), true);
+        assertEquals(s0.getPlayer().getOpponent().getTurn(), false);
     }
 
 }
