@@ -23,7 +23,7 @@ public class SmallBowlTest{
     }
 
     @Test
-    public void TestingGetNextBowlWithInt9Steps(){
+    public void TestingGetNextBowlWithIntEndsInKalaha(){
         SmallBowl s0 = new SmallBowl();
         assertEquals(s0.getNextBowl(6).getIndex(), 7);
     }

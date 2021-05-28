@@ -4,10 +4,12 @@ class SmallBowl implements Bowl{
     Bowl neighbor;
     int index;
     int stones = 4;
+    Player player;
 
     public SmallBowl(){
         this.index = 1;
-        this.neighbor = new SmallBowl(this, index+1);
+        this.player = new Player();
+        this.neighbor = new SmallBowl(this, index+1); 
     }
 
     public SmallBowl(SmallBowl nr1, int i){
@@ -20,6 +22,12 @@ class SmallBowl implements Bowl{
             this.index = i;
             i++;
             this.neighbor = new SmallBowl(nr1, i);
+        }
+        if(i<8){
+            this.player = nr1.player;
+        }
+        if(i>7){
+            this.player = nr1.player.getOpponent();
         }
     }
 
@@ -57,6 +65,10 @@ class SmallBowl implements Bowl{
     public SmallBowl emptyBowl(){
         this.stones = 0;
         return this;
+    }
+
+    public Player getPlayer(){
+        return this.player;
     }
 }
 
