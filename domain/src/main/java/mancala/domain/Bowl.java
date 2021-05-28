@@ -7,4 +7,6 @@ public interface Bowl{
     public int getStones();
     public Bowl addStone();
     public Player getPlayer();
+    public int stones = 0;
+    public Bowl getOppositeBowl();
 }

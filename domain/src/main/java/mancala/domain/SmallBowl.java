@@ -81,7 +81,7 @@ class SmallBowl implements Bowl{
 
     public void playTurn(){
         rocksInHand = this.stones;
-        this.stones = 0;
+        this.emptyBowl();
         for(int i = 1; i <= rocksInHand; i++){
             if(this.getNextBowl(i).getPlayer() == this.player.getOpponent() && (this.getNextBowl(i).getIndex() == 7 || this.getNextBowl(i).getIndex() == 14)){
             }
@@ -90,11 +90,27 @@ class SmallBowl implements Bowl{
             }
         }
         bowlOfFinalStone = this.getNextBowl(rocksInHand);
+        if(bowlOfFinalStone.stones == 1){
+
+        }
+
         if(bowlOfFinalStone.getIndex() == 7 || bowlOfFinalStone.getIndex() == 14){
         }
         else{
             this.player.switchTurn();
         }
+    }
+
+    public Bowl getOppositeBowl(){
+        int stepsToKalaha = 14-this.getIndex();
+        Bowl oppositeBowl = this;
+        for(int j = 0; j < 14; j++){
+            if(stepsToKalaha == this.getNextBowl(j).getIndex()){
+                oppositeBowl = this.getNextBowl(j);
+                break;
+            }
+        }
+        return oppositeBowl;
     }
 }
 

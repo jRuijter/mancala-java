@@ -79,7 +79,7 @@ public class SmallBowlTest{
     }
 
     @Test
-    public void FinalBowlEndsInOwnKalaha(){
+    public void FinalStoneEndsInOwnKalaha(){
         SmallBowl s0 = new SmallBowl();
         s0.setStones(6);
         s0.play();
@@ -87,4 +87,24 @@ public class SmallBowlTest{
         assertEquals(s0.getPlayer().getOpponent().getTurn(), false);
     }
 
+    @Test
+    public void CheckOppositeBowlFromP1Side(){
+        SmallBowl s0 = new SmallBowl(); 
+        assertEquals(s0.getOppositeBowl().getIndex(), 13);
+        assertEquals(s0.getNextBowl(3).getOppositeBowl().getIndex(), 10);
+    }
+
+    @Test
+    public void CheckOppositeBowlFromP2Side(){
+        SmallBowl s0 = new SmallBowl();
+ //       assertEquals(s0.getNextBowl(10).getOppositeBowl().getIndex(), 3);
+    }
+
+//    @Test
+//    public void FinalStoneEndsInOwnEmptyBowlAndStealingIsPossible(){
+//        SmallBowl s0 = new SmallBowl();
+//        s0.getNextBowl(4).setStones(0);
+//        s0.play();
+//        assertEquals(s0.getNextBowl(6).getStones(), 8);
+//    }
 }

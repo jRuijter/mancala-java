@@ -50,5 +50,9 @@ public class Kalaha implements Bowl {
     public Player getPlayer(){
         return this.player;
     }
+
+    public Bowl getOppositeBowl(){      //The only reason to have this method also in Kalaha.java is to allow to use
+        return this.getNextBowl(7);     //this method on all Bowls (interface) since many other functions (as getNextBowl)
+    }                                   //return Bowls (instead of SmallBowls), however this method is never called on a Kalaha
 }
 
