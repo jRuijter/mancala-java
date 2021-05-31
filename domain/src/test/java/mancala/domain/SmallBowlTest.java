@@ -17,6 +17,12 @@ public class SmallBowlTest{
     }
 
     @Test
+    public void TestingGetNextBowlTwice(){
+        SmallBowl s0 = new SmallBowl();
+        assertEquals(s0.getNextBowl(8).getNextBowl(3).getIndex(), 12);
+    }
+
+    @Test
     public void TestingGetNextBowlWithInt15Steps(){
         SmallBowl s0 = new SmallBowl();
         assertEquals(s0.getNextBowl(15).getIndex(), 2);
@@ -75,7 +81,7 @@ public class SmallBowlTest{
         s0.setStones(14);
         s0.play();
         assertEquals(0, s0.getNextBowl(13).getStones());
-        assertEquals(1, s0.getStones());
+    //    assertEquals(0, s0.getStones()); //not true anymore because of stealing
     }
 
     @Test
@@ -89,22 +95,24 @@ public class SmallBowlTest{
 
     @Test
     public void CheckOppositeBowlFromP1Side(){
-        SmallBowl s0 = new SmallBowl(); 
-        assertEquals(s0.getOppositeBowl().getIndex(), 13);
-        assertEquals(s0.getNextBowl(3).getOppositeBowl().getIndex(), 10);
+        SmallBowl s1 = new SmallBowl(); 
+        assertEquals(s1.getOppositeBowl().getIndex(), 13);
+        assertEquals(s1.getNextBowl(3).getOppositeBowl().getIndex(), 10);
     }
 
     @Test
     public void CheckOppositeBowlFromP2Side(){
-        SmallBowl s0 = new SmallBowl();
- //       assertEquals(s0.getNextBowl(10).getOppositeBowl().getIndex(), 3);
+        SmallBowl s1 = new SmallBowl();
+ //       assertEquals(s1.getNextBowl(10).getOppositeBowl().getIndex(), 3);
     }
 
-//    @Test
-//    public void FinalStoneEndsInOwnEmptyBowlAndStealingIsPossible(){
-//        SmallBowl s0 = new SmallBowl();
-//        s0.getNextBowl(4).setStones(0);
-//        s0.play();
-//        assertEquals(s0.getNextBowl(6).getStones(), 8);
-//    }
+    @Test
+    public void FinalStoneEndsInOwnEmptyBowlAndStealingIsPossible(){
+        SmallBowl s0 = new SmallBowl();
+        s0.getNextBowl(4).emptyBowl();
+        s0.play();
+        assertEquals(s0.getNextBowl(6).getStones(), 5); //should be 5
+        assertEquals(s0.getNextBowl(4).getOppositeBowl().getStones(), 0); //should be 0
+        assertEquals(s0.getNextBowl(4).getStones(), 0); //should be 0
+    }
 }

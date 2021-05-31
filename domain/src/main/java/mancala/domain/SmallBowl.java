@@ -54,7 +54,7 @@ class SmallBowl implements Bowl{
         return this.stones;
     }
 
-    public SmallBowl setStones(int newAmount){
+    public Bowl setStones(int newAmount){
         this.stones = newAmount;
         return this;
     }
@@ -64,7 +64,7 @@ class SmallBowl implements Bowl{
         return this;
     }
 
-    public SmallBowl emptyBowl(){
+    public Bowl emptyBowl(){
         this.stones = 0;
         return this;
     }
@@ -90,8 +90,8 @@ class SmallBowl implements Bowl{
             }
         }
         bowlOfFinalStone = this.getNextBowl(rocksInHand);
-        if(bowlOfFinalStone.stones == 1){
-
+        if(bowlOfFinalStone.getStones() == 1){
+            bowlOfFinalStone.tryToSteal();
         }
 
         if(bowlOfFinalStone.getIndex() == 7 || bowlOfFinalStone.getIndex() == 14){
@@ -111,6 +111,18 @@ class SmallBowl implements Bowl{
             }
         }
         return oppositeBowl;
+    }
+
+    public void tryToSteal(){
+        if(this.getOppositeBowl().getStones() > 0){
+            int stonesToSteal = this.getStones() + this.getOppositeBowl().getStones();
+            this.emptyBowl();
+            this.getOppositeBowl().emptyBowl();
+            if(this.getIndex() < 7){
+                int currentStones = this.getNextBowl(7-this.getIndex()).getStones();
+                this.getNextBowl(7-this.getIndex()).setStones(currentStones + stonesToSteal);
+            }
+        }
     }
 }
 

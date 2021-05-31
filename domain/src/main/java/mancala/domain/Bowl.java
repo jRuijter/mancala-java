@@ -9,4 +9,7 @@ public interface Bowl{
     public Player getPlayer();
     public int stones = 0;
     public Bowl getOppositeBowl();
+    public void tryToSteal();
+    public Bowl emptyBowl();
+    public Bowl setStones(int newAmount);
 }
