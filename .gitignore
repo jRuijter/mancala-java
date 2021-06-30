@@ -5,4 +5,5 @@
 build
 
 node_modules
+/.metadata/
 client/node_modules
