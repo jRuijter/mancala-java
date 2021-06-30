@@ -11,4 +11,5 @@ public class PitInput {
     public void setPitToPlay(Integer index){
         this.pitToPlay = index;
     }
+    
 }

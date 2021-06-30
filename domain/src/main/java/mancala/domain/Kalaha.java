@@ -28,10 +28,19 @@ public class Kalaha implements Bowl {
     public Bowl getNextBowl(int choice){
         int indexNew = this.getIndex() + (choice%14);
         Bowl tempBowl = this;
+        for(int i = 0; i < 30; i++){
+            tempBowl = tempBowl.getNextBowl();
+            if(indexNew == tempBowl.getIndex()){
+                break;
+            }
+        }
+        return tempBowl;
+/*
         while(indexNew != tempBowl.getIndex()){
             tempBowl = tempBowl.getNextBowl();
         }
         return tempBowl;
+*/
     }
 
     public int getIndex(){

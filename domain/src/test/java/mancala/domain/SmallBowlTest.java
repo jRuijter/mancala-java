@@ -103,7 +103,7 @@ public class SmallBowlTest{
     @Test
     public void CheckOppositeBowlFromP2Side(){
         SmallBowl s1 = new SmallBowl();
- //       assertEquals(s1.getNextBowl(10).getOppositeBowl().getIndex(), 3);
+        assertEquals(s1.getNextBowl(10).getOppositeBowl().getIndex(), 3);
     }
 
     @Test
