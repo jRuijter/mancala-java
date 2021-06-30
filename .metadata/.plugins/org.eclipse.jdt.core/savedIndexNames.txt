@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\Julia\.ssh\mancala-java\.metadata\.plugins\org.eclipse.jdt.core

@@ -1,0 +1,41 @@
+.players{
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.pit {
+    font-size: 1.4em;
+    background-color: lightgreen;
+    border: 2px solid black;
+    margin: 5px;
+    width: 3em;
+    left: 3em;
+    position: relative;
+    border-radius: 1000px;
+}
+
+.kalaha1 {
+    font-size: 1.4em;
+    background-color: rgb(156, 184, 156);
+    border: 2px solid black;
+    margin: 5px;
+    height: 5em;
+    width: 2em;
+    border-radius: 1000px;
+}
+
+.kalaha2 {
+    font-size: 1.4em;
+    background-color: rgb(156, 184, 156);
+    border: 2px solid black;
+    margin: 5px;
+    height: 5em;
+    float: right;
+    width: 2em;
+    border-radius: 1000px;
+}
+
+.board {
+    width: 38em;
+    float: inline-end;
+}
