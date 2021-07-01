@@ -1,8 +1,10 @@
 package mancala.domain;
 
 public class MancalaImpl implements Mancala {
+    SmallBowl s;
+
     public MancalaImpl() {
-        // Initialize the game here.
+        s = new SmallBowl();
     }
 
     @Override
@@ -12,14 +14,18 @@ public class MancalaImpl implements Mancala {
 
     @Override
 	public void playPit(int index) throws MancalaException {
-        // Implement playing a pit.
+        //s.getNextBowl(index).play();
+        //System.out.println(s.getNextBowl(index).getStones());
+        s.getNextBowl(index).setStones(s.getNextBowl(index).getStones()+1);
+        System.out.println(s.getNextBowl(index).getIndex() + " is played"); 
     }
 	
 	@Override
-	public int getStonesForPit(int index) {
-        // Make a sane implementation.
-        if((index + 1 % 7) == 0) return 0;
-        return 4;
+	public int getStonesForPit(int index, String type) {
+        int value = 0;
+        if(type.equals("player1")) { value = s.getNextBowl(index).getStones(); }
+        if(type.equals("player2")) { value = s.getNextBowl(index + 7).getStones(); }
+        return value;
     }
 
 	@Override

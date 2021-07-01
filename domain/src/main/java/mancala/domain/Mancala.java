@@ -36,7 +36,7 @@ public interface Mancala {
 	 * @param index Index of the pit.
 	 * @return Amount of stone.
 	 */
-	int getStonesForPit(int index);
+	int getStonesForPit(int index, String type);
 
 	/**
 	 * Method for retrieving whether the game has ended or not.

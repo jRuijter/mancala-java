@@ -26,9 +26,9 @@ public class Kalaha implements Bowl {
     }
 
     public Bowl getNextBowl(int choice){
-        int indexNew = this.getIndex() + (choice%14);
+        int indexNew = (this.getIndex() + (choice%14))%14;
         Bowl tempBowl = this;
-        for(int i = 0; i < 30; i++){
+        for(int i = 0; i < 14; i++){
             tempBowl = tempBowl.getNextBowl();
             if(indexNew == tempBowl.getIndex()){
                 break;
@@ -75,6 +75,9 @@ public class Kalaha implements Bowl {
     public Bowl setStones(int newAmount){
         this.stones = newAmount;
         return this;
+    }
+
+    public void play(){
     }
 }
 

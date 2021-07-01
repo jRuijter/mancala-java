@@ -12,4 +12,5 @@ public interface Bowl{
     public void tryToSteal();
     public Bowl emptyBowl();
     public Bowl setStones(int newAmount);
+    public void play();
 }

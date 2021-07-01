@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import type { GameState } from "../gameState";
 import "./Play.css";
-import { StartGame } from "./StartGame";
 
 type PlayProps = {
     gameState: GameState;

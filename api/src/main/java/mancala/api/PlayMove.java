@@ -19,25 +19,19 @@ public class PlayMove{
 	public Response playMove(@Context HttpServletRequest request, PitInput pitSelected) throws MancalaException{
 			
 			HttpSession session = request.getSession(true);
-			Integer pitIndex = pitSelected.getPitToPlay()%7;
+			Integer pitIndex = pitSelected.getPitToPlay();
 
 			MancalaImpl currentGame = (MancalaImpl)session.getAttribute("mancala");
 			String namePlayer1 = (String)session.getAttribute("player1");
 			String namePlayer2 = (String)session.getAttribute("player2");
-			Mancala currentGameAPI = new Mancala(currentGame, namePlayer1, namePlayer2);
-			Player[] players = currentGameAPI.getPlayers();
+			//Mancala currentGameAPI = new Mancala(currentGame, namePlayer1, namePlayer2);
+			//Player[] players = currentGameAPI.getPlayers();
 
-			if(players[0].getHasTurn() == true){
-				Pit[] pits = players[0].getPits();
-				currentGame.playPit(pits[pitIndex].getIndex());
-			}
-			else{
-				Pit[] pits = players[1].getPits();
-				currentGame.playPit(pits[pitIndex].getIndex());
-			}
+			currentGame.playPit(pitIndex);
+			//System.out.println(pitIndex);
 			
 			session.setAttribute("mancala", currentGame);
-			currentGameAPI = new Mancala(currentGame, namePlayer1, namePlayer2);
+			Mancala currentGameAPI = new Mancala(currentGame, namePlayer1, namePlayer2);
 			Mancala output = currentGameAPI;
 			return Response.status(200).entity(output).build();
 		}
