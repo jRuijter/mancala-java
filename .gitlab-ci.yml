@@ -2,8 +2,8 @@ default:
   image: gradle:jdk14
 
 stages:
-  - test
   - build
+  - test
 
 test-domain:
   stage: test
@@ -16,7 +16,7 @@ test-domain:
 build-domain:
   stage: build
   script:
-    - gradle :domain:build
+    - gradle :domain/src/main:build
   artifacts:
         paths:
         - domain/build/libs/domain
