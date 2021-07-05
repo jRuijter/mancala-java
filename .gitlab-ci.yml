@@ -1,29 +1,12 @@
-default:
-  image: ruby:2.7.2
+stages:
+  build
+  test
 
-build-job:
+build-domain:
+  image: gradle:jdk14
   stage: build
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-
-test-job1:
-  stage: test
-  script:
-    - echo "This job tests something"
-
-ruby:
-  stage: test
-  script:
-    - bundle install
-    - bundle exec rspec --format progress --format RspecJunitFormatter --out rspec.xml
+    - gradle :domain:build
   artifacts:
-    when: always
-    paths:
-      - rspec.xml
-    reports:
-      junit: rspec.xml
-
-deploy-prod:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+        paths:
+        - domain/build/libs/domain.jar
