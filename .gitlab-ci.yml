@@ -1,6 +1,9 @@
 default:
   image: gradle:jdk14
 
+variables:
+  JACOCO_CSV_LOCATION: '$CI_PROJECT_DIR/build/jacocoCsv'
+
 stages:
   - build
   - test
@@ -9,6 +12,7 @@ test-domain:
   stage: test
   script:
     - gradle :domain:test
+    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_CSV_LOCATION
   artifacts:
     reports:
       junit: domain/build/test-results/test/**/TEST-*
