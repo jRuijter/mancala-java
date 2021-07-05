@@ -16,7 +16,7 @@ test-domain:
 build-domain:
   stage: build
   script:
-    - gradle :domain/src/main:build
+    - gradle :domain/src/main/java/mancala/domain/:build
   artifacts:
         paths:
         - domain/build/libs/domain
