@@ -12,3 +12,14 @@ build-domain:
   artifacts:
         paths:
         - domain/build/libs/domain.jar
+
+test-domain:
+  stage: test
+  script:
+    - gradle :domain:test
+  needs: ["buildDomain"]
+  dependencies:
+    - buildDomain
+  artifacts:
+    reports:
+      junit: domain/build/test-results/test/**/TEST-*.xml
