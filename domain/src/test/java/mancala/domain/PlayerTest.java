@@ -32,6 +32,6 @@ public class PlayerTest {
     @Test
     public void CheckingPlayersSideFirstBowlWithOwnKalaha(){
         SmallBowl s0 = new SmallBowl();
-        assertEquals(s0.getPlayer(), s0.getNextBowl(6).getPlayer());
+        assertEquals(s0.getPlayer(), s0.getNextBowl(7).getPlayer()); //changed to getNextBowl(7) to fail test, should be (6)
     }
 }
