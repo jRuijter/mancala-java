@@ -16,7 +16,7 @@ test-domain:
 build-domain:
   stage: build
   script:
-    - gradle :domain:build
+    - gradle :domain:assemble
   artifacts:
         paths:
         - domain/build/libs/domain
