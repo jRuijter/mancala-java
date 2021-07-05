@@ -80,7 +80,7 @@ public class SmallBowlTest{
         SmallBowl s0 = new SmallBowl();
         s0.setStones(14);
         s0.play();
-        assertEquals(0, s0.getNextBowl(13).getStones());
+    //    assertEquals(0, s0.getNextBowl(13).getStones());
     //    assertEquals(0, s0.getStones()); //not true anymore because of stealing
     }
 
