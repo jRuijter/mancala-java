@@ -11,7 +11,7 @@ test-domain:
     - gradle :domain:test
   artifacts:
     reports:
-      junit: domain/build/test-results/test
+      junit: domain/build/test-results/test/**/TEST-*
 
 build-domain:
   stage: build
