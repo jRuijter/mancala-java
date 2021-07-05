@@ -2,7 +2,7 @@ default:
   image: gradle:jdk14
 
 variables:
-  JACOCO_CSV_LOCATION: '$buildDir/reports/jacoco/test'
+  JACOCO_OUTPUT_LOCATION: 'jacocoHtml'
 
 stages:
   - build
@@ -12,7 +12,7 @@ test-domain:
   stage: test
   script:
     - gradle :domain:test
-    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_CSV_LOCATION
+    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_OUTPUT_LOCATION
   artifacts:
     reports:
       junit: domain/build/test-results/test/**/TEST-*
