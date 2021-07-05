@@ -11,7 +11,7 @@ build-domain:
     - gradle :domain:build
   artifacts:
         paths:
-        - domain/build/libs/domain.jar
+        - domain/build/libs/domain.txt
 
 test-domain:
   stage: test
@@ -19,4 +19,4 @@ test-domain:
     - gradle :domain:test
   artifacts:
     reports:
-      junit: domain/build/test-results/test/**/TEST-*.xml
+      junit: domain/build/test-results/test/**/TEST-*.txt
