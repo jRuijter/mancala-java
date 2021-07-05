@@ -2,9 +2,8 @@ plugins {
     // Tell Gradle that we are builing java as a library (non-executable piece of code intended for use by other applications).
     id 'java'
     id 'java-library'
+    id 'jacoco'
 }
-
-apply plugin: 'jacoco'
 
 repositories {
     // Specify the repository mirror that we want to download our dependencies from. JCentral is configured by default when creating a new Gradle project.
@@ -22,7 +21,6 @@ jacoco{
 }
 
 jacocoTestReport {
-    toolVersion = '0.7.5'
     reports {
         csv.enabled true
         csv.destination file("${buildDir}/jacocoCsv")
