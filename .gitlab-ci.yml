@@ -16,7 +16,7 @@ test-domain:
     - 'gradle test jacocoTestReport'
   artifacts:
     paths: 
-      - build/jacoco/jacoco.xml
+      - domain/build/jacoco/jacoco/
     reports:
       junit: domain/build/test-results/test/**/TEST-*
 
