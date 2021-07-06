@@ -2,7 +2,7 @@ default:
   image: gradle:jdk14
 
 variables:
-  JACOCO_OUTPUT_LOCATION: $CI_PROJECT_DIR/build/jacocoCsv'
+  JACOCO_OUTPUT_LOCATION: '$CI_PROJECT_DIR/build/jacocoCsv'
 
 stages:
   - build
