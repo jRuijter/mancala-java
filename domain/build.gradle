@@ -18,20 +18,19 @@ dependencies {
 
 jacoco{
     toolVersion = "0.8.7"
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+    // reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
 
 jacocoTestReport {
     dependsOn test
     reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        csv.enabled true
+        csv.destination file("${buildDir}/jacocoCsv")
     }
 }
 
 test {
     // For running our tests, use the test runner provided by JUnit.
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
+    finalizedBy("jacocoTestReport")
 }

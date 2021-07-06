@@ -7,13 +7,15 @@ variables:
 stages:
   - build
   - test
+  - visualize
 
 test-domain:
   stage: test
   script:
     - gradle :domain:test
-    - awk -F"," '{ instructions += $4 + $5; covered += $5 } END { print covered, "/", instructions, " instructions covered"; print 100*covered/instructions, "% covered" }' $JACOCO_OUTPUT_LOCATION
+    - 'gradle test jacocoTestReport'
   artifacts:
+    paths: build/jacoco/jacoco.xml
     reports:
       junit: domain/build/test-results/test/**/TEST-*
 
@@ -25,4 +27,17 @@ build-domain:
         paths:
         - domain/build/libs/domain
 
+coverage-domain:
+  stage: visualize
+  image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7 
+  # taken from example on https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html 
+  script:
+    # convert report from jacoco to cobertura, using relative project path
+    - python /opt/cover2cover.py build/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > build/cobertura.xml
+  needs: ["test-domain"]
+  dependencies:
+    - test-domain
+  artifacts:
+    reports:
+      cobertura: build/cobertura.xml
 
