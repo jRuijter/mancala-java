@@ -16,9 +16,9 @@ test-domain:
     - 'gradle test jacocoTestReport'
   artifacts:
     paths: 
-      - domain/build/jacoco/jacoco.xml
+      - build/jacoco/jacoco.xml
     reports:
-      junit: domain/build/test-results/test/**/TEST-*.xml
+      junit: build/test-results/test/**/TEST-*.xml
 
 build-domain:
   stage: build
@@ -26,7 +26,7 @@ build-domain:
     - gradle :domain:assemble
   artifacts:
       paths:
-        - domain/build/libs/domain
+        - build/libs/domain
 
 coverage-domain:
   stage: visualize
@@ -34,11 +34,11 @@ coverage-domain:
   # taken from example on https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html 
   script:
     # convert report from jacoco to cobertura, using relative project path
-    - python /opt/cover2cover.py domain/build/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > domain/build/cobertura.xml
+    - python /opt/cover2cover.py build/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > build/cobertura.xml
   needs: ["test-domain"]
   dependencies:
     - test-domain
   artifacts:
     reports:
-      cobertura: domain/build/cobertura.xml
+      cobertura: build/cobertura.xml
 
