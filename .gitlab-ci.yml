@@ -12,7 +12,7 @@ stages:
 test-domain:
   stage: test
   script:
-    - gradle :domain:test
+    - 'gradle :domain:test'
     - 'gradle test jacocoTestReport'
   artifacts:
     paths: build/jacoco/jacoco.xml
