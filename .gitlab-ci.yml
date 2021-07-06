@@ -34,11 +34,11 @@ coverage-domain:
   # taken from example on https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html 
   script:
     # convert report from jacoco to cobertura, using relative project path
-    - python /opt/cover2cover.py build/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > build/cobertura.xml
+    - python /opt/cover2cover.py domain/build/jacoco/jacoco.xml $CI_PROJECT_DIR/src/main/java/ > domain/build/cobertura.xml
   needs: ["test-domain"]
   dependencies:
     - test-domain
   artifacts:
     reports:
-      cobertura: build/cobertura.xml
+      cobertura: domain/build/cobertura.xml
 
