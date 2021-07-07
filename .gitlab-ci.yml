@@ -21,8 +21,9 @@ test-domain:
   stage: test
   image: gradle:6.6.1-jdk11
   script:
-    - 'gradle :domain:test'
-    - 'gradle test jacocoTestReport'
+    - ./gradlew :domain:test
+    - ./gradlew test jacocoTestReport
+    - find domain/build/reports -type f
   artifacts:
     paths: 
       - domain/build/reports/jacoco.xml
