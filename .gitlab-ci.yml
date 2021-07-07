@@ -9,6 +9,14 @@ stages:
   - test
   - visualize
 
+build-domain:
+  stage: build
+  script:
+    - gradle :domain:assemble
+  artifacts:
+      paths:
+        - domain/build/libs/domain
+
 test-domain:
   stage: test
   image: gradle:6.6.1-jdk11
@@ -20,14 +28,6 @@ test-domain:
       - domain/build/jacoco/jacoco.xml
     reports:
       junit: domain/build/test-results/test/**/TEST-*.xml
-
-build-domain:
-  stage: build
-  script:
-    - gradle :domain:assemble
-  artifacts:
-      paths:
-        - domain/build/libs/domain
 
 coverage-domain:
   stage: visualize
