@@ -15,7 +15,7 @@ class SmallBowl implements Bowl{
     }
 
     public SmallBowl(SmallBowl nr1, int i){
-        if(i==6 || i == 13){
+        if(i==6 || i==13){
             this.index = i;
             i++;
             this.neighbor = new Kalaha(nr1, i);
@@ -38,7 +38,10 @@ class SmallBowl implements Bowl{
     }
 
     public Bowl getNextBowl(int choice){
-        int indexNew = (this.getIndex() + (choice%14))%14;
+        int indexNew = ((this.getIndex() + choice)%14);
+        if(indexNew==0){
+            indexNew = 14;
+        }
         Bowl tempBowl = this;
         for(int i = 0; i < 14; i++){
             tempBowl = tempBowl.getNextBowl();
@@ -92,7 +95,8 @@ class SmallBowl implements Bowl{
         rocksInHand = this.stones;
         this.emptyBowl();
         for(int i = 1; i <= rocksInHand; i++){
-            if(this.getNextBowl(i).getPlayer() == this.player.getOpponent() && (this.getNextBowl(i).getIndex() == 7 || this.getNextBowl(i).getIndex() == 14)){
+            if(this.getNextBowl(i).getPlayer() != this.player && (this.getNextBowl(i).getIndex() == 7 || this.getNextBowl(i).getIndex() == 14)){
+                rocksInHand++;
             }
             else{
                 this.getNextBowl(i).addStone();
@@ -130,6 +134,10 @@ class SmallBowl implements Bowl{
             if(this.getIndex() < 7){
                 int currentStones = this.getNextBowl(7-this.getIndex()).getStones();
                 this.getNextBowl(7-this.getIndex()).setStones(currentStones + stonesToSteal);
+            }
+            else{
+                int currentStones = this.getNextBowl(14-this.getIndex()).getStones();
+                this.getNextBowl(14-this.getIndex()).setStones(currentStones + stonesToSteal);
             }
         }
     }

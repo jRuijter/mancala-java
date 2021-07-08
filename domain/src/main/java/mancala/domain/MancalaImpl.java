@@ -14,17 +14,14 @@ public class MancalaImpl implements Mancala {
 
     @Override
 	public void playPit(int index) throws MancalaException {
-        //s.getNextBowl(index).play();
-        //System.out.println(s.getNextBowl(index).getStones());
-        s.getNextBowl(index).setStones(s.getNextBowl(index).getStones()+1);
-        System.out.println(s.getNextBowl(index).getIndex() + " is played"); 
+        s.getNextBowl(index).play();
+        System.out.println("Played Bowl has: " + s.getNextBowl(index).getStones() + "  Kalaha p1 has: " + s.getNextBowl(6).getStones() + "  Kalaha p2 has: " + s.getNextBowl(13).getStones());
     }
 	
 	@Override
-	public int getStonesForPit(int index, String type) {
+	public int getStonesForPit(int index) {
         int value = 0;
-        if(type.equals("player1")) { value = s.getNextBowl(index).getStones(); }
-        if(type.equals("player2")) { value = s.getNextBowl(index + 7).getStones(); }
+        value = s.getNextBowl(index).getStones();
         return value;
     }
 

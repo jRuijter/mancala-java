@@ -25,7 +25,9 @@ public class SmallBowlTest{
     @Test
     public void TestingGetNextBowlWithInt15Steps(){
         SmallBowl s0 = new SmallBowl();
-        assertEquals(s0.getNextBowl(15).getIndex(), 2);
+        assertEquals(1, s0.getNextBowl(14).getIndex());
+        assertEquals(2, s0.getNextBowl(15).getIndex());
+        assertEquals(14, s0.getNextBowl(13).getIndex());
     }
 
     @Test
@@ -78,9 +80,10 @@ public class SmallBowlTest{
     @Test
     public void SkipOpponentsKalahaDuringMove(){
         SmallBowl s0 = new SmallBowl();
-        s0.setStones(14);
+        s0.setStones(13);
         s0.play();
-        assertEquals(0, s0.getNextBowl(13).getStones());
+        assertEquals(0, s0.getNextBowl(14).getStones()); //due to stealing from the bowl that is played
+        assertEquals(7, s0.getNextBowl(6).getStones());
     //    assertEquals(0, s0.getStones()); //not true anymore because of stealing
     }
 
@@ -91,6 +94,17 @@ public class SmallBowlTest{
         s0.play();
         assertEquals(s0.getPlayer().getTurn(), true);
         assertEquals(s0.getPlayer().getOpponent().getTurn(), false);
+    }
+
+    @Test
+    public void FinalStownEndsInOwnKalahaP2(){
+        SmallBowl s0 = new SmallBowl();
+        s0.getPlayer().switchTurn();
+        s0.getNextBowl(7).setStones(6);
+        s0.getNextBowl(7).play();
+        assertEquals(1, s0.getNextBowl(13).getStones());
+        s0.getNextBowl(12).play();
+        assertEquals(2, s0.getNextBowl(13).getStones());
     }
 
     @Test

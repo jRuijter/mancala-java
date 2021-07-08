@@ -9,6 +9,7 @@ public class KalahaTest{
     public void CheckGetStonesKalaha(){
         SmallBowl s0 = new SmallBowl();
         assertEquals(0, s0.getNextBowl(6).getStones());
+        assertEquals(0, s0.getNextBowl(13).getStones());
     }
 
     @Test
