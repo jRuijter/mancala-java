@@ -1,25 +1,48 @@
 default:
-  image: ruby:2.7.2
+  image: gradle:jdk14
 
-build-job:
+variables:
+  JACOCO_OUTPUT_LOCATION: '$CI_PROJECT_DIR/build/jacocoCsv'
+
+stages:
+  - build
+  - test
+  - visualize
+
+build-domain:
   stage: build
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
+    - gradle :domain:assemble
+  artifacts:
+      paths:
+        - domain/build/libs/domain
 
-test-job1:
+test-domain:
   stage: test
+  image: gradle:6.6.1-jdk11
   script:
-    - echo "This job tests something"
+    - gradle :domain:test
+    - gradle test jacocoTestReport
+    - find domain/build/reports -type f
+    
+  artifacts:
+    paths: 
+      - domain/build/reports/jacoco/test/jacocoTestReport.xml
+    reports:
+      junit: domain/build/test-results/test/**/TEST-*.xml
 
-test-job2:
-  stage: test
+coverage-domain:
+  stage: visualize
+  image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7 
+  # taken from example on https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html 
   script:
-    - echo "This job tests something, but takes more time than test-job1."
-    - echo "After the echo commands complete, it runs the sleep command for 20 seconds"
-    - echo "which simulates a test that runs 20 seconds longer than test-job1"
-    - sleep 20
-
-deploy-prod:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+    # convert report from jacoco to cobertura, using relative project path
+    - python /opt/cover2cover.py domain/build/reports/jacoco/test/jacocoTestReport.xml $CI_PROJECT_DIR/src/main/java/ > domain/build/cobertura.xml
+    - sed -ier 's;\(<source>\).*\(</source>\);\1./\2;' domain/build/cobertura.xml
+    - sed -ier 's;\(filename="\)\(.*\)";\1domain/src/main/java/\2;' domain/build/cobertura.xml
+  needs: ["test-domain"]
+  dependencies:
+    - test-domain
+  artifacts:
+    reports:
+      cobertura: domain/build/cobertura.xml
