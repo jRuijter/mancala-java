@@ -38,6 +38,17 @@ build-api:
       paths:
         - api/build/libs/api
 
+test-api:
+  stage: test
+  script:
+    - gradle :api:test
+    - gradle test jacocoTestReport
+  artifacts:
+    paths:
+      -api/build/reports/jacoco/test/jacocoTestReport.xml
+    reports:
+        junit: domain/build/test-results/test/**/TEST-*.xml
+
 coverage-domain:
   stage: visualize
   image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7 
