@@ -24,12 +24,19 @@ test-domain:
     - gradle :domain:test
     - gradle test jacocoTestReport
     - find domain/build/reports -type f
-    
   artifacts:
-    paths: 
+      paths: 
       - domain/build/reports/jacoco/test/jacocoTestReport.xml
-    reports:
-      junit: domain/build/test-results/test/**/TEST-*.xml
+      reports:
+        junit: domain/build/test-results/test/**/TEST-*.xml
+
+build-api:
+  stage: build
+  script:
+    - gradle :api:assemble
+  artifacts:
+      paths:
+        - api/build/libs/api
 
 coverage-domain:
   stage: visualize
