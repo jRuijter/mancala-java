@@ -3,6 +3,7 @@ plugins {
     id 'java'
     // This time we're building a command-line executable application.
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -44,7 +45,16 @@ application {
     mainClassName = 'mancala.App'
 }
 
+jacocoTestReport {
+    reports {
+        html.enabled false
+        csv.enabled false
+        xml.enabled true
+    }
+}
+
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
