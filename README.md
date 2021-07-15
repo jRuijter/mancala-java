@@ -1,3 +1,7 @@
+Dit project is een opdracht uitgevoerd tijdens mijn opleidingstraject bij Sogyo. Verschillende branches zijn verschillende delen van de uiteindelijke opdracht. De meest uitgebreide branch (mvc-oo) is een web applicatie waarop de basis spelregels van het oude, Afrikaanse bordspel Mancala zijn geïmplementeerd. Om de servers op te starten typ je de command (indien nodig eerst "npm install" en daarna ) "npm run start" in de client/ repository. Vervolgens run je api\src\main\java\mancala\App.java en kan je beginnen met spelen! De rest van de README files zijn een beschrijving van de opdracht zoals gegeven.
+
+
+
 Mancala
 =======
 
